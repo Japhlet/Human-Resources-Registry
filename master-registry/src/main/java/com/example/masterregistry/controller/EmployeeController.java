@@ -3,9 +3,7 @@ package com.example.masterregistry.controller;
 import com.example.masterregistry.entity.Employee;
 import com.example.masterregistry.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,10 @@ public class EmployeeController {
     @GetMapping(path = "/employees")
     public List<Employee> getAllEmployees() {
         return this.employeeService.getAllEmployees();
+    }
+
+    @PostMapping(path = "employees/addNew")
+    public void addEmployee(@RequestBody Employee employee){
+        this.employeeService.addEmployee(employee);
     }
 }
