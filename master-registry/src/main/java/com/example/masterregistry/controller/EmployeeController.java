@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class EmployeeController {
 
     @Autowired
@@ -18,7 +19,7 @@ public class EmployeeController {
         return this.employeeService.getAllEmployees();
     }
 
-    @PostMapping(path = "employees/addNew")
+    @PostMapping(path = "employees/add")
     public void addEmployee(@RequestBody Employee employee){
         this.employeeService.addEmployee(employee);
     }
