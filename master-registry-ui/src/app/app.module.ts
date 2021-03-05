@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home/home.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from './service/employee.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { EmployeeService } from './service/employee.service';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [
     EmployeeService

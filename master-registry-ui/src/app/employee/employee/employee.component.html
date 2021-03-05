@@ -1,6 +1,6 @@
 <div class="container">
     <div class="border">
-        <button class="btn btn-md btn-outline-primary"><i class="fa fa-user">Add Employee</i></button>
+        <button class="btn btn-md btn-outline-primary"><i class="fa fa-user" (click)="open(addEmployee)">Add Employee</i></button>
     </div>
     <table class="table table-bordered table-striped" style="width:100%">
         <thead>
@@ -29,3 +29,49 @@
         </tbody>
     </table>
 </div>
+
+<ng-template #addEmployee let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <div class="input-group">
+                <input id="lastName" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <div class="input-group">
+                <input id="firstName" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <div class="input-group">
+                <input id="email" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+            <div class="input-group">
+                <input id="department" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <div class="input-group">
+                <input id="country" type="text" class="form-control">
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+    </div>
+  </ng-template>
