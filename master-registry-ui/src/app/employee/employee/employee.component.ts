@@ -35,8 +35,8 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
-  open(addEmployee) {
-    this.modalService.open(addEmployee, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  openAddEmployeeModal(addEmployeeModal) {
+    this.modalService.open(addEmployeeModal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -61,4 +61,17 @@ export class EmployeeComponent implements OnInit {
     );
     this.modalService.dismissAll() //Dismiss the modal
   }
+
+  openEmployeeDetailsModal(employeeDetailsModal, employee: Employee) {
+    this.modalService.open(employeeDetailsModal, {
+     centered: true,
+     backdrop: 'static',
+     size: 'lg'
+   });
+    document.getElementById('dtlastName').setAttribute('value', employee.lastName);
+    document.getElementById('dtfirstName').setAttribute('value', employee.firstName);
+    document.getElementById('dtemail').setAttribute('value', employee.email);
+    document.getElementById('dtdepartment').setAttribute('value', employee.department);
+    document.getElementById('dtcountry').setAttribute('value', employee.country);
+ }
 }
