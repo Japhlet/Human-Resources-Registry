@@ -22,4 +22,10 @@ public class EmployeeController {
     public void addEmployee(@RequestBody Employee employee){
         this.employeeService.addEmployee(employee);
     }
+
+    @PutMapping(path = "employees/update/{id}")
+    public void updateEmployee(@PathVariable(value = "id") Long id,
+                               @RequestBody Employee employee) {
+        this.employeeService.updateEmployee(id, employee);
+    }
 }
