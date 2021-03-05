@@ -38,40 +38,44 @@
       </button>
     </div>
     <div class="modal-body">
-      <form>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <div class="input-group">
-                <input id="lastName" type="text" class="form-control">
+                <input id="lastName" name="lastName" class="form-control" ngModel>
             </div>
         </div>
         <div class="form-group">
             <label for="firstName">First Name</label>
             <div class="input-group">
-                <input id="firstName" type="text" class="form-control">
+                <input id="firstName" name="firstName" class="form-control" ngModel>
             </div>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <div class="input-group">
-                <input id="email" type="text" class="form-control">
+                <input id="email" name="email" class="form-control" ngModel>
             </div>
         </div>
         <div class="form-group">
             <label for="department">Department</label>
             <div class="input-group">
-                <input id="department" type="text" class="form-control">
+                <input id="department" name="department" class="form-control" ngModel>
             </div>
         </div>
         <div class="form-group">
             <label for="country">Country</label>
             <div class="input-group">
-                <input id="country" type="text" class="form-control">
+                <input id="country" name="country" class="form-control" ngModel>
             </div>
+        </div>
+
+        <div class="border text-center">
+            <button data-dismiss="modal" class="btn btn-info">Save</button>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
     </div>
   </ng-template>

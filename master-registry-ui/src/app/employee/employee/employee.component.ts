@@ -1,10 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { from, Observable } from 'rxjs';
-import { ApiResponse } from 'src/app/model/api.response';
 import { Employee } from 'src/app/model/employee.model';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -12,11 +11,11 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  
+
   employees: Employee[];
   closeResult: string;
 
-  constructor(
+  constructor(    
     private employeeService: EmployeeService,
     private modalService: NgbModal   
     ) { }
@@ -52,5 +51,14 @@ export class EmployeeComponent implements OnInit {
     } else {
       return 'with: ${reason}';
     }
+  }
+
+  onSubmit(f: NgForm) {    
+    this.employeeService.addEmployee(f.value).subscribe(
+      (result) => {
+        this.ngOnInit(); //Reload the table
+      }
+    );
+    this.modalService.dismissAll() //Dismiss the modal
   }
 }
