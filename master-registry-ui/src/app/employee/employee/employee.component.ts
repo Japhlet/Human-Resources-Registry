@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/model/employee.model';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -14,14 +14,25 @@ export class EmployeeComponent implements OnInit {
 
   employees: Employee[];
   closeResult: string;
+  editForm: FormGroup;
 
   constructor(    
     private employeeService: EmployeeService,
-    private modalService: NgbModal   
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit(): void {
-    this.getAllEmployees();    
+    this.getAllEmployees(); 
+    
+    this.editForm = this.formBuilder.group({
+      id: [''],
+      lastName: [''],
+      firstName: [''],
+      email: [''],
+      department: [''],
+      country: ['']
+    } );
   }
   
   public getAllEmployees(): void {    
@@ -53,8 +64,8 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  onSubmit(f: NgForm) {    
-    this.employeeService.addEmployee(f.value).subscribe(
+  onSubmit(addEmployeeForm: NgForm) {    
+    this.employeeService.addEmployee(addEmployeeForm.value).subscribe(
       (result) => {
         this.ngOnInit(); //Reload the table
       }
@@ -73,5 +84,20 @@ export class EmployeeComponent implements OnInit {
     document.getElementById('dtemail').setAttribute('value', employee.email);
     document.getElementById('dtdepartment').setAttribute('value', employee.department);
     document.getElementById('dtcountry').setAttribute('value', employee.country);
- }
+  }
+
+  openEditEmployeeDetailsModal(editEmployeeDetailsModal, employee: Employee) {
+    this.modalService.open(editEmployeeDetailsModal, {
+      backdrop: 'static',
+      size: 'lg'
+    });
+    this.editForm.patchValue( {
+      id: employee.id, 
+      lastName: employee.lastName,
+      firstName: employee.firstName,
+      email: employee.email,
+      department: employee.department,
+      country: employee.country
+    });
+  }
 }

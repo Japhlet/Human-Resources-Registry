@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home/home.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from './service/employee.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,11 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
-    EmployeeService
+    EmployeeService    
   ],
   bootstrap: [AppComponent]
 })

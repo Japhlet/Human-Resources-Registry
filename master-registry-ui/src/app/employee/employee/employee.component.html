@@ -22,7 +22,7 @@
                 <td><span>{{ employee.country }}</span></td>
                 <td>
                     <button class="btn btn-sm btn-info" (click)="openEmployeeDetailsModal(employeeDetailsModal, employee)"><i class="fa fa-search"></i>Details</button>
-                    <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
+                    <button class="btn btn-sm btn-warning" (click)="openEditEmployeeDetailsModal(editEmployeeModal, employee)"><i class="fa fa-edit"></i>Edit</button>
                     <button class="btn btn-sm btn-danger"><i class="fa fa-remove"></i>Delete</button>
                 </td>
             </tr>
@@ -38,7 +38,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <form #addEmployeeForm="ngForm" (ngSubmit)="onSubmit(addEmployeeForm)" novalidate>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <div class="input-group">
@@ -118,6 +118,56 @@
             <div class="input-group">
                 <input id="dtcountry" class="form-control" readonly>
             </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #editEmployeeModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Employee</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editForm" novalidate>        
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <div class="input-group">
+                <input id="edlastName" formControlName="lastName" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <div class="input-group">
+                <input id="edfirstName" formControlName="firstName" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <div class="input-group">
+                <input id="edemail" formControlName="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+            <div class="input-group">
+                <input id="eddepartment" formControlName="department" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <div class="input-group">
+                <input id="edcountry" formControlName="country" class="form-control">
+            </div>
+        </div>
+
+        <div class="border text-center">
+            <button data-dismiss="modal" class="btn btn-info">Save Changes</button>
         </div>
       </form>
     </div>
