@@ -22,9 +22,9 @@ public class EmployeeService {
         this.employeeRepository.save(employee);
     }
 
-    public void updateEmployee(Long id, Employee employee) {
-        Employee employeeToUpdate = employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id "+id+" not found"));
+    public void updateEmployee(Employee employee) {
+        Employee employeeToUpdate = employeeRepository.findById(employee.getId())
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id "+employee.getId()+" not found"));
 
         employeeToUpdate.setLastName(employee.getLastName());
         employeeToUpdate.setFirstName(employee.getFirstName());

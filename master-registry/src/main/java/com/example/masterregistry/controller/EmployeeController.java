@@ -25,10 +25,9 @@ public class EmployeeController {
         this.employeeService.addEmployee(employee);
     }
 
-    @PutMapping(path = "/update/{id}")
-    public void updateEmployee(@PathVariable(value = "id") Long id,
-                               @RequestBody Employee employee) {
-        this.employeeService.updateEmployee(id, employee);
+    @PutMapping(path = "/update")
+    public void updateEmployee(@RequestBody Employee employee) {
+        this.employeeService.updateEmployee(employee);
     }
 
     @DeleteMapping(path = "/delete/{id}")
