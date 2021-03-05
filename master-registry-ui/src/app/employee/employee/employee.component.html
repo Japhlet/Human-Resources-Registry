@@ -2,7 +2,7 @@
     <div class="border">
         <button class="btn btn-md btn-outline-primary"><i class="fa fa-user">Add Employee</i></button>
     </div>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Last Name</th>
@@ -10,6 +10,7 @@
                 <th>Email</th>
                 <th>Department</th>
                 <th>Country</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,11 @@
                 <td><span>{{ employee.email }}</span></td>
                 <td><span>{{ employee.department }}</span></td>
                 <td><span>{{ employee.country }}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-info"><i class="fa fa-search"></i>Details</button>
+                    <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>Edit</button>
+                    <button class="btn btn-sm btn-danger"><i class="fa fa-remove"></i>Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
