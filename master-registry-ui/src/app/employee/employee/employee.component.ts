@@ -15,11 +15,12 @@ export class EmployeeComponent implements OnInit {
   employees: Employee[];
   closeResult: string;
   editForm: FormGroup;
+  employeeToDeleteId: number;
 
   constructor(    
     private employeeService: EmployeeService,
     private modalService: NgbModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder    
     ) { }
 
   ngOnInit(): void {
@@ -99,5 +100,29 @@ export class EmployeeComponent implements OnInit {
       department: employee.department,
       country: employee.country
     });
+  }
+
+  onSave() {
+    this.employeeService.updateEmployee(this.editForm.value)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
+
+  openDeleteEmployeeModal(deleteEmployeeModal, employee: Employee) {
+    this.employeeToDeleteId = employee.id;
+    this.modalService.open(deleteEmployeeModal, {
+      backdrop: 'static',
+      size: 'lg'
+    });
+  }
+
+  onDelete() {  
+    this.employeeService.deleteEmployee(this.employeeToDeleteId)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
   }
 }
