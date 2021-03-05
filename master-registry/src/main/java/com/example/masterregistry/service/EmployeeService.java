@@ -32,6 +32,12 @@ public class EmployeeService {
         employeeToUpdate.setDepartment(employee.getDepartment());
         employeeToUpdate.setCountry(employee.getCountry());
 
-        employeeRepository.save(employeeToUpdate);
+        this.employeeRepository.save(employeeToUpdate);
+    }
+
+    public void deleteEmployee(Long id) {
+        Employee employeeToDelete = this.employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id "+id+" not found"));
+        this.employeeRepository.delete(employeeToDelete);
     }
 }
