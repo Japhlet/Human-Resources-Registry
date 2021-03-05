@@ -1,1 +1,22 @@
-<p>employee works!</p>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td><span>{{ employee.lastName }}</span></td>
+                <td><span>{{ employee.firstName }}</span></td>
+                <td><span>{{ employee.email }}</span></td>
+                <td><span>{{ employee.department }}</span></td>
+                <td><span>{{ employee.country }}</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

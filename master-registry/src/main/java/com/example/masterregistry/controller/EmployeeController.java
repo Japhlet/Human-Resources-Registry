@@ -9,29 +9,29 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping(path = "/employees")
+    @GetMapping(path = "/all")
     public List<Employee> getAllEmployees() {
         return this.employeeService.getAllEmployees();
     }
 
-    @PostMapping(path = "employees/add")
+    @PostMapping(path = "/add")
     public void addEmployee(@RequestBody Employee employee){
         this.employeeService.addEmployee(employee);
     }
 
-    @PutMapping(path = "employees/update/{id}")
+    @PutMapping(path = "/update/{id}")
     public void updateEmployee(@PathVariable(value = "id") Long id,
                                @RequestBody Employee employee) {
         this.employeeService.updateEmployee(id, employee);
     }
 
-    @DeleteMapping(path = "/employees/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public void deleteEmployee(@PathVariable(value = "id") Long id) {
         this.employeeService.deleteEmployee(id);
     }
