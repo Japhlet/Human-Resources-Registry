@@ -29,13 +29,14 @@ public class AppUserService implements UserDetailsService {
         boolean appUserExists = appUserRepository.findByEmail(appUser.getEmail()).isPresent();
 
         if (appUserExists) {
-            //TODO check if attributes are the same and
-            //TODO if email not confirmed, send confirmation email
             throw new IllegalStateException("Email is taken");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
+
+        //Enable the user account
+        appUser.setEnabled(true);
 
         //Save the user in the database
         appUserRepository.save(appUser);
