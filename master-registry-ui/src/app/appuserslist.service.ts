@@ -7,15 +7,16 @@ import { AppUser } from './model/userregistration.model';
 @Injectable({
   providedIn: 'root'
 })
-export class UserregistrationService {
+export class AppuserslistService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(
     private http: HttpClient
   ) { }
+
+  public getAllAppUsers(): Observable<AppUser[]> {
+    return this.http.get<AppUser[]>(`${this.apiServerUrl}/users/all`);
+  }  
   
-  public registerAppUser(appUser : AppUser): Observable<AppUser> {
-    return this.http.post<AppUser>(`${this.apiServerUrl}/users/register`, appUser);
-  }
 }

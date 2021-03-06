@@ -2,25 +2,39 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppuserslistService } from 'src/app/appuserslist.service';
 import { AppUser } from 'src/app/model/userregistration.model';
 import { UserregistrationService } from 'src/app/userregistration.service';
 
 @Component({
-  selector: 'app-userregistration',
-  templateUrl: './userregistration.component.html',
-  styleUrls: ['./userregistration.component.css']
+  selector: 'app-appuserslist',
+  templateUrl: './appuserslist.component.html',
+  styleUrls: ['./appuserslist.component.css']
 })
-export class UserregistrationComponent implements OnInit {
+export class AppuserslistComponent implements OnInit {
 
   appUsers: AppUser[];
   closeResult: string;
 
   constructor(
+    private appUserslistService: AppuserslistService,
     private userRegistrationService: UserregistrationService,
     private modalService: NgbModal
   ) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    this.getAllAppUsers();
+  }
+
+  public getAllAppUsers(): void {    
+    this.appUserslistService.getAllAppUsers().subscribe(
+      (response: AppUser[]) => {        
+        this.appUsers = response;
+      },
+      (error: HttpErrorResponse) => {        
+        alert(error.message);
+      }
+    );
   }
 
   openRegisterAppUserModal(registerAppUserModal) {
@@ -49,15 +63,4 @@ export class UserregistrationComponent implements OnInit {
     );
     this.modalService.dismissAll() //Dismiss the modal
   } 
-  
-  openLoginAppUserModal(loginAppUserModal) {
-    this.modalService.open(loginAppUserModal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  
-
 }

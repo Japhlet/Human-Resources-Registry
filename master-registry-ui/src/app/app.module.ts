@@ -10,15 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from './service/employee.service';
 import { FormBuilder, FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { UserregistrationComponent } from './userregistration/userregistration/userregistration.component';
-import { UserloginComponent } from './userlogin/userlogin/userlogin.component';
+import { AppuserslistComponent } from './userregistration/appuserslist/appuserslist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EmployeeComponent,
-    UserregistrationComponent,
-    UserloginComponent
+    UserregistrationComponent,    
+    AppuserslistComponent
   ],
   imports: [
     BrowserModule,
