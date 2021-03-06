@@ -15,6 +15,8 @@ export class AppuserslistComponent implements OnInit {
 
   appUsers: AppUser[];
   closeResult: string;
+  userCreatedSuccessfulMessage = '';
+  userCreatedNotSuccessfulMessage = '';
 
   constructor(
     private appUserslistService: AppuserslistService,
@@ -57,9 +59,13 @@ export class AppuserslistComponent implements OnInit {
 
   onSubmit(registerAppUserForm: NgForm) {    
     this.userRegistrationService.registerAppUser(registerAppUserForm.value).subscribe(
-      (result) => {
+      data => {
         this.ngOnInit(); //Reload the table
-      }
+        this.userCreatedSuccessfulMessage = "User added successfully.";
+      },
+      error => { console.log("An exception occurred");
+      this.userCreatedNotSuccessfulMessage = "Bad credentials, please enter valid email and password";
+    }   
     );
     this.modalService.dismissAll() //Dismiss the modal
   } 

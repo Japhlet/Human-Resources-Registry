@@ -1,8 +1,8 @@
-export interface AppUser {
+export class AppUser {
 
-    id: number,
-    lastName: string,
-    firstName: string,
-    email: string,
-    password: string
+    id: number;
+    lastName: string;
+    firstName: string;
+    email: string;
+    password: string;
 }

@@ -35,6 +35,7 @@
     </div>
     <div class="modal-body">
       <form #registerAppUserForm="ngForm" (ngSubmit)="onSubmit(registerAppUserForm)" novalidate>
+        <small class="text-success">{{ userCreatedSuccessfulMessage }}</small> 
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <div class="input-group">

@@ -15,8 +15,10 @@ export class UserregistrationComponent implements OnInit {
 
   appUsers: AppUser[];
   closeResult: string;
-  email: string;
-  password: string;
+  loginSuccessMessage = '';
+  loginErrorMessage = '';
+  userCreatedSuccessfulMessage = '';
+  appUser = new AppUser();
 
   constructor(
     private userRegistrationService: UserregistrationService,
@@ -49,6 +51,7 @@ export class UserregistrationComponent implements OnInit {
     this.userRegistrationService.registerAppUser(registerAppUserForm.value).subscribe(
       (result) => {
         this.ngOnInit(); //Reload the table
+        this.userCreatedSuccessfulMessage = "User added successfully.";
       }
     );
     this.modalService.dismissAll() //Dismiss the modal
@@ -64,10 +67,13 @@ export class UserregistrationComponent implements OnInit {
 
   loginUser(loginAppUserForm: NgForm) {
     this.userRegistrationService.loginUser(loginAppUserForm.value).subscribe(
-      data => console.log(data)     
+      data => { console.log(data);
+        this.router.navigate(['/home']);
+        this.modalService.dismissAll();
+      },
+      error => { console.log("An exception occurred");
+      this.loginErrorMessage = "Bad credentials, please enter valid email and password";
+    }   
     );
- 
-    //this.router.navigate(['/home']);
-    //this.modalService.dismissAll();
    } 
 }
