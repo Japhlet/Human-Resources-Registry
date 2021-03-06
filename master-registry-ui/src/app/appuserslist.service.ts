@@ -17,6 +17,6 @@ export class AppuserslistService {
 
   public getAllAppUsers(): Observable<AppUser[]> {
     return this.http.get<AppUser[]>(`${this.apiServerUrl}/users/all`);
-  }  
+  } 
   
 }

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppUser } from 'src/app/model/userregistration.model';
 import { UserregistrationService } from 'src/app/userregistration.service';
@@ -14,10 +15,13 @@ export class UserregistrationComponent implements OnInit {
 
   appUsers: AppUser[];
   closeResult: string;
+  email: string;
+  password: string;
 
   constructor(
     private userRegistrationService: UserregistrationService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router  
   ) { }
 
   ngOnInit(): void {    
@@ -58,6 +62,12 @@ export class UserregistrationComponent implements OnInit {
     });
   }
 
-  
-
+  loginUser(loginAppUserForm: NgForm) {
+    this.userRegistrationService.loginUser(loginAppUserForm.value).subscribe(
+      data => console.log(data)     
+    );
+ 
+    //this.router.navigate(['/home']);
+    //this.modalService.dismissAll();
+   } 
 }

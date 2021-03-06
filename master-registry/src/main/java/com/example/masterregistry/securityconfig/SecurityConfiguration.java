@@ -23,14 +23,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http)
             throws Exception {
         //super.configure(http);
+        http.cors();
+        http.csrf().disable();
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**")
+                .antMatchers("/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login");
     }
 
     @Override

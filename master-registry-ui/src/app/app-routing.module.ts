@@ -6,11 +6,11 @@ import { AppuserslistComponent } from './userregistration/appuserslist/appusersl
 import { UserregistrationComponent } from './userregistration/userregistration/userregistration.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'usersregistration', pathMatch: 'full' },
+  { path: 'usersregistration', component: UserregistrationComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'employees', component: EmployeeComponent },
-  { path: '', component: HomeComponent },
-  { path: 'usersregistration', component: UserregistrationComponent },  
-  { path: 'login', component: UserregistrationComponent },  
+  { path: 'employees', component: EmployeeComponent }, 
+    
   { path: 'userslist', component: AppuserslistComponent }
 ];
 

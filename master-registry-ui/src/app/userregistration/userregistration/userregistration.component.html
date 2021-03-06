@@ -61,17 +61,17 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #registerAppUserForm="ngForm" (ngSubmit)="onSubmit(registerAppUserForm)" novalidate>        
+      <form #loginAppUserForm="ngForm" (ngSubmit)="loginUser(loginAppUserForm)" novalidate>        
         <div class="form-group">
             <label for="email">Email</label>
             <div class="input-group">
-                <input type="email" id="svemail" name="email" class="form-control" ngModel>
+                <input type="email" id="lgemail" name="email" class="form-control" ngModel>
             </div>
         </div>
         <div class="form-group">
             <label for="Password">Password</label>
             <div class="input-group">
-                <input type="password" id="svpassword" name="password" class="form-control" ngModel>
+                <input type="password" id="lgpassword" name="password" class="form-control" ngModel>
             </div>
         </div>
 
