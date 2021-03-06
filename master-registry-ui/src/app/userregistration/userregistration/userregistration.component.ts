@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppUser } from 'src/app/model/userregistration.model';
 import { UserregistrationService } from 'src/app/userregistration.service';
@@ -51,5 +52,14 @@ export class UserregistrationComponent implements OnInit {
       return 'with: ${reason}';
     }
   }
+
+  onSubmit(registerAppUserForm: NgForm) {    
+    this.userRegistrationService.registerAppUser(registerAppUserForm.value).subscribe(
+      (result) => {
+        this.ngOnInit(); //Reload the table
+      }
+    );
+    this.modalService.dismissAll() //Dismiss the modal
+  }  
 
 }
