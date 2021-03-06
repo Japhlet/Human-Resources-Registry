@@ -15,6 +15,10 @@ export class UserregistrationService {
     private http: HttpClient
   ) { }
 
+  public getAllAppUsers(): Observable<AppUser[]> {
+    return this.http.get<AppUser[]>(`${this.apiServerUrl}/users/all`);
+  }  
+  
   public registerAppUser(appUser : AppUser): Observable<AppUser> {
     return this.http.post<AppUser>(`${this.apiServerUrl}/users/register`, appUser);
   }
