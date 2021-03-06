@@ -1,4 +1,4 @@
-export interface Employee {
+export interface AppUser {
 
     id: number,
     lastName: string,
