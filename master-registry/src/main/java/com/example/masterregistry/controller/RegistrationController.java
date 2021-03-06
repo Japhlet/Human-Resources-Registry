@@ -1,12 +1,13 @@
 package com.example.masterregistry.controller;
 
+import com.example.masterregistry.entity.AppUser;
+import com.example.masterregistry.entity.Employee;
 import com.example.masterregistry.entity.RegistrationRequest;
 import com.example.masterregistry.service.RegistrationService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -14,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegistrationController {
 
     private final RegistrationService registrationService;
+
+    @GetMapping(path = "/all")
+    public List<AppUser> getAllAppUsers() {
+        return this.registrationService.getAllAppUsers();
+    }
 
     @PostMapping(path = "/register")
     public void register(@RequestBody RegistrationRequest request) {
