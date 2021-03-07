@@ -2,7 +2,6 @@ package com.example.masterregistry.service;
 
 import com.example.masterregistry.entity.AppUser;
 import com.example.masterregistry.exceptions.AppUserNotFoundException;
-import com.example.masterregistry.exceptions.EmployeeNotFoundException;
 import com.example.masterregistry.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

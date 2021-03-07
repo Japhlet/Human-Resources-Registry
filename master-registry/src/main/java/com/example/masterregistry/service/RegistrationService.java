@@ -2,15 +2,10 @@ package com.example.masterregistry.service;
 
 import com.example.masterregistry.entity.AppUser;
 import com.example.masterregistry.entity.AppUserRole;
-import com.example.masterregistry.entity.Employee;
 import com.example.masterregistry.entity.RegistrationRequest;
-import com.example.masterregistry.exceptions.EmployeeNotFoundException;
 import com.example.masterregistry.repository.AppUserRepository;
-import com.example.masterregistry.securityconfig.PasswordEncoder;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
