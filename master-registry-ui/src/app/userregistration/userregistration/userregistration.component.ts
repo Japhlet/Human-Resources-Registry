@@ -78,4 +78,8 @@ export class UserregistrationComponent implements OnInit {
     }   
     );
    } 
+
+   loginOutUser() {    
+        this.router.navigate(['/home']);        
+   }
 }
