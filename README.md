@@ -8,7 +8,7 @@ It consists of two parts:
 2. Fron-end (Angular) - master-registry-ui
 
 The Angular front-end calls the back-end Spring Boot APIs 
-The back-end exposed the APIs, which are consumed by the front-end service
+The back-end exposes the APIs, which are consumed by the front-end service
 
 Application to demonstrate various parts of a service oriented RESTful application.
 Backend (REST-API)	SpringBoot (Java)
