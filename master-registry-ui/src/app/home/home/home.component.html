@@ -16,9 +16,15 @@
             </a>            
         </div>        
     </div>    
-    <div *ngIf="chart" style="width:25%;">
-        <canvas id="canvas" width="1px" height="1px">
-            {{ chart }}
+    <div *ngIf="leaveDaysChart" style="width:25%;">
+        <canvas id="leaveDays" width="1px" height="1px">
+            {{ leaveDaysChart }}
+        </canvas>
+    </div>
+
+    <div *ngIf="ageSalaryChart" style="width:25%;">
+        <canvas id="ageAndSalary" width="1px" height="1px">
+            {{ ageSalaryChart }}
         </canvas>
     </div>
     

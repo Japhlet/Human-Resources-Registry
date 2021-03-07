@@ -8,4 +8,6 @@ export class Employee {
     country: string;
     totalLeaveDays: number;
     leaveDaysLeft: number;
+    age: number;
+    salary: number;
 }

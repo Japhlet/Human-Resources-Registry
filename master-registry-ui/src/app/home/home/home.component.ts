@@ -12,10 +12,13 @@ import { Employee } from 'src/app/model/employee.model';
 })
 export class HomeComponent implements OnInit {
 
-  chart = [];
+  leaveDaysChart = [];
   totalLeaveDays = [];
   leaveDaysLeft = [];
   lastName = [];
+  age = [];
+  salary = [];
+  ageSalaryChart = [];
 
   constructor(
     private employeeService: EmployeeService,
@@ -23,90 +26,129 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.employeeLeaveDays ();
-
-
-    //this.employeeService.dailyEmployeesAdded().subscribe(
-      //(res) => {
-        //console.log(res);   
-        
-        //let tototalLeaveDays = res[0];
-        //let leaveDaysLeft = res[1]; 
-        //let department = res[2];  
-        
-        //console.log(tototalLeaveDays);
-        //console.log(leaveDaysLeft);
-        //console.log(department);
-
-      
-
-     // }
-    //)
+    this.employeeLeaveDays();
+    this.employeeAgeAndSalary();
   }
 
-
-  employeeLeaveDays () {
+  employeeLeaveDays() {
     this.employeeService.dailyEmployeesAdded().subscribe(
-      (emp: Employee[]) => { 
+      (emp: Employee[]) => {
 
-        for (let data of emp) { 
+        for (let data of emp) {
           this.totalLeaveDays.push(data.totalLeaveDays);
           this.leaveDaysLeft.push(data.leaveDaysLeft);
           this.lastName.push(data.lastName);
 
-          this.chart = new Chart('canvas', {
-              type: 'line',              
-              data: {
-                labels: this.lastName,
-                datasets: [
-                  {
-                    label: 'Total Leave Days',
-                    data: this.totalLeaveDays,
-                    borderColor: '#3cba9f',
-                    fill: false
-                  },
-                  {
-                    label: 'Leave Days Left',
-                    data: this.leaveDaysLeft,
-                    borderColor: '#ffcc00',
-                    fill: false
-                  },
-                ]
+          this.leaveDaysChart = new Chart('leaveDays', {
+            type: 'line',
+            data: {
+              labels: this.lastName,
+              datasets: [
+                {
+                  label: 'Total Leave Days',
+                  data: this.totalLeaveDays,
+                  borderColor: '#3cba9f',
+                  fill: false
+                },
+                {
+                  label: 'Leave Days Left',
+                  data: this.leaveDaysLeft,
+                  borderColor: '#ffcc00',
+                  fill: false
+                },
+              ]
+            },
+            options: {
+              legend: {
+                display: true
               },
-              options: {                
-                legend: {
-                  display: true
-                },
-                title: {
-                  display: true,
-                  text: 'Employee Leave Days Chart'
-                },
-                scales: {
-                  xAxis: [
-                    {
-                      display: true,
-                      scaleLabel: {
-                        display: true                        
-                      }                      
+              title: {
+                display: true,
+                text: 'Employee Leave Days Chart'
+              },
+              scales: {
+                xAxis: [
+                  {
+                    display: true,
+                    scaleLabel: {
+                      display: true
                     }
-                  ],
-                  yAxis: [
-                    {                      
-                      display:true,                      
-                      beginAtZero: true,
-                      scaleLabel: {
-                        display: true
-                      }
+                  }
+                ],
+                yAxis: [
+                  {
+                    display: true,
+                    beginAtZero: true,
+                    scaleLabel: {
+                      display: true
                     }
-                  ]
-                }            
+                  }
+                ]
               }
-            })
-         
-         }
-      
-    });
-}
+            }
+          })
+        }
+      });
+  }
+
+  employeeAgeAndSalary() {
+    this.employeeService.dailyEmployeesAdded().subscribe(
+      (emp: Employee[]) => {
+
+        for (let data of emp) {
+          this.age.push(data.age);
+          this.salary.push(data.salary);
+          this.lastName.push(data.lastName);
+
+          this.ageSalaryChart = new Chart('ageAndSalary', {
+            type: 'line',
+            data: {
+              labels: this.lastName,
+              datasets: [
+                {
+                  label: 'Age',
+                  data: this.age,
+                  borderColor: '#3cba9f',
+                  fill: false
+                },
+                {
+                  label: 'Salary',
+                  data: this.salary,
+                  borderColor: '#ffcc00',
+                  fill: false
+                },
+              ]
+            },
+            options: {
+              legend: {
+                display: true
+              },
+              title: {
+                display: true,
+                text: 'Employee Age and Salary'
+              },
+              scales: {
+                xAxis: [
+                  {
+                    display: true,
+                    scaleLabel: {
+                      display: true
+                    }
+                  }
+                ],
+                yAxis: [
+                  {
+                    display: true,                    
+                    scaleLabel: {
+                      display: true
+                    }
+                  }
+                ]
+              }
+            }
+          })
+        }
+      });
+  }
 
 }

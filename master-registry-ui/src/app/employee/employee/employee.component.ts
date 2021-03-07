@@ -34,7 +34,9 @@ export class EmployeeComponent implements OnInit {
       department: [''],
       country: [''],
       totalLeaveDays: [''],
-      leaveDaysLeft: ['']
+      leaveDaysLeft: [''],
+      age: [''],
+      salary: ['']
     } );
   }
   
@@ -89,6 +91,8 @@ export class EmployeeComponent implements OnInit {
     document.getElementById('dtcountry').setAttribute('value', employee.country);
     document.getElementById('dttotalLeaveDays').setAttribute('value', employee.totalLeaveDays.toString());
     document.getElementById('dtleaveDaysLeft').setAttribute('value', employee.leaveDaysLeft.toString());
+    document.getElementById('dtage').setAttribute('value', employee.age.toString());
+    document.getElementById('dtsalary').setAttribute('value', employee.salary.toString());
   }
 
   openEditEmployeeDetailsModal(editEmployeeDetailsModal, employee: Employee) {
@@ -104,7 +108,9 @@ export class EmployeeComponent implements OnInit {
       department: employee.department,
       country: employee.country,
       totalLeaveDays: employee.totalLeaveDays,
-      leaveDaysLeft: employee.leaveDaysLeft
+      leaveDaysLeft: employee.leaveDaysLeft,
+      age: employee.age,
+      salary: employee.salary
     });
   }
 

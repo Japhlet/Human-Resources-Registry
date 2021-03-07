@@ -95,6 +95,20 @@
         </div>
     </div>
 
+    <div class="form-group">
+      <label for="age">Age</label>
+      <div class="input-group">
+          <input id="svage" name="age" class="form-control" ngModel>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="salary">Leave Days Left</label>
+    <div class="input-group">
+        <input id="svsalary" name="salary" class="form-control" ngModel>
+    </div>
+</div>
+
         <div class="border text-center">
             <button data-dismiss="modal" class="btn btn-info">Save</button>
         </div>
@@ -156,6 +170,20 @@
             <input id="dtleaveDaysLeft" class="form-control" readonly>
         </div>
     </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <div class="input-group">
+          <input id="dtage" class="form-control" readonly>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label>Salary</label>
+    <div class="input-group">
+        <input id="dtsalary" class="form-control" readonly>
+    </div>
+</div>
       </form>
     </div>
     <div class="modal-footer">
@@ -216,6 +244,20 @@
             <input id="edleaveDaysLeft" formControlName="leaveDaysLeft" class="form-control">
         </div>
     </div>
+
+    <div class="form-group">
+      <label for="age">Age</label>
+      <div class="input-group">
+          <input id="edage" formControlName="age" class="form-control">
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="salary">Salary</label>
+    <div class="input-group">
+        <input id="edsalary" formControlName="salary" class="form-control">
+    </div>
+</div>
 
         <div class="border text-center">
             <button data-dismiss="modal" class="btn btn-info" (click)="onSave()">Save Changes</button>
