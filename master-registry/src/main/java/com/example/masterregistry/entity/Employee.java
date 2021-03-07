@@ -25,4 +25,6 @@ public class Employee {
     private String country;
     private Long totalLeaveDays;
     private Long leaveDaysLeft;
+    private Long age;
+    private Long salary;
 }

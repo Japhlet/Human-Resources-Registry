@@ -87,6 +87,8 @@ export class EmployeeComponent implements OnInit {
     document.getElementById('dtemail').setAttribute('value', employee.email);
     document.getElementById('dtdepartment').setAttribute('value', employee.department);
     document.getElementById('dtcountry').setAttribute('value', employee.country);
+    document.getElementById('dttotalLeaveDays').setAttribute('value', employee.totalLeaveDays.toString());
+    document.getElementById('dtleaveDaysLeft').setAttribute('value', employee.leaveDaysLeft.toString());
   }
 
   openEditEmployeeDetailsModal(editEmployeeDetailsModal, employee: Employee) {

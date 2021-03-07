@@ -78,6 +78,10 @@ export class HomeComponent implements OnInit {
                 legend: {
                   display: true
                 },
+                title: {
+                  display: true,
+                  text: 'Employee Leave Days Chart'
+                },
                 scales: {
                   xAxis: [
                     {
