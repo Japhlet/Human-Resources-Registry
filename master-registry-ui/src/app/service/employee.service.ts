@@ -32,7 +32,7 @@ export class EmployeeService {
     return this.http.delete<void>(`${this.apiServerUrl}/employees/delete/${employeeId}`);
   }
 
-  dailyEmployeesAdded (): Observable<Employee[]>{
+  employeesData (): Observable<Employee[]>{
     return this.http.get<Employee[]>(`${this.apiServerUrl}/employees/all`).pipe(
       map((result) => {
         return result;

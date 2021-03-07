@@ -15,18 +15,30 @@
                 Employees           
             </a>            
         </div>        
-    </div>    
-    <div *ngIf="leaveDaysChart" style="width:25%;">
-        <canvas id="leaveDays" width="1px" height="1px">
-            {{ leaveDaysChart }}
-        </canvas>
     </div>
 
-    <div *ngIf="ageSalaryChart" style="width:25%;">
-        <canvas id="ageAndSalary" width="1px" height="1px">
-            {{ ageSalaryChart }}
-        </canvas>
+    <div class="row">
+        <div class="col-sm" *ngIf="leaveDaysChart" style="width:30%;">
+            <canvas id="leaveDays" width="5px" height="4px">
+                {{ leaveDaysChart }}
+            </canvas>
+        </div>
+    
+        <div class="col-sm" *ngIf="salaryChart" style="width:30%;">
+            <canvas id="salary" width="5px" height="4px">
+                {{ salaryChart }}
+            </canvas>
+        </div>
+    
+        <div class="col-sm" *ngIf="ageChart" style="width:30%;">
+            <canvas id="age" width="5px" height="4px">
+                {{ ageChart }}
+            </canvas>
+        </div>
+
     </div>
+        
+    
     
 </div>
 

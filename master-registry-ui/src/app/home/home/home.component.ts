@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
   lastName = [];
   age = [];
   salary = [];
-  ageSalaryChart = [];
+  salaryChart = [];
+  ageChart = [];
 
   constructor(
     private employeeService: EmployeeService,
@@ -26,18 +27,19 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.employeeLeaveDays();
-    this.employeeAgeAndSalary();
+    this.employeeCharts();    
   }
 
-  employeeLeaveDays() {
-    this.employeeService.dailyEmployeesAdded().subscribe(
+  employeeCharts() {
+    this.employeeService.employeesData().subscribe(
       (emp: Employee[]) => {
 
         for (let data of emp) {
           this.totalLeaveDays.push(data.totalLeaveDays);
           this.leaveDaysLeft.push(data.leaveDaysLeft);
           this.lastName.push(data.lastName);
+          this.salary.push(data.salary);
+          this.age.push(data.age);
 
           this.leaveDaysChart = new Chart('leaveDays', {
             type: 'line',
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit {
                   data: this.leaveDaysLeft,
                   borderColor: '#ffcc00',
                   fill: false
-                },
+                }
               ]
             },
             options: {
@@ -88,66 +90,92 @@ export class HomeComponent implements OnInit {
             }
           })
         }
-      });
-  }
 
-  employeeAgeAndSalary() {
-    this.employeeService.dailyEmployeesAdded().subscribe(
-      (emp: Employee[]) => {
-
-        for (let data of emp) {
-          this.age.push(data.age);
-          this.salary.push(data.salary);
-          this.lastName.push(data.lastName);
-
-          this.ageSalaryChart = new Chart('ageAndSalary', {
-            type: 'line',
-            data: {
-              labels: this.lastName,
-              datasets: [
-                {
-                  label: 'Age',
-                  data: this.age,
-                  borderColor: '#3cba9f',
-                  fill: false
-                },
-                {
-                  label: 'Salary',
-                  data: this.salary,
-                  borderColor: '#ffcc00',
-                  fill: false
-                },
-              ]
-            },
-            options: {
-              legend: {
-                display: true
-              },
-              title: {
-                display: true,
-                text: 'Employee Age and Salary'
-              },
-              scales: {
-                xAxis: [
-                  {
-                    display: true,
-                    scaleLabel: {
-                      display: true
-                    }
-                  }
-                ],
-                yAxis: [
-                  {
-                    display: true,                    
-                    scaleLabel: {
-                      display: true
-                    }
-                  }
-                ]
+        this.salaryChart = new Chart('salary', {
+          type: 'bar',
+          data: {
+            labels: this.lastName,
+            datasets: [                
+              {
+                label: 'Salary',
+                data: this.salary,
+                borderColor: '#524c4c',
+                fill: false
               }
+            ]
+          },
+          options: {
+            legend: {
+              display: true
+            },
+            title: {
+              display: true,
+              text: 'Employee Salary Chart'
+            },
+            scales: {
+              xAxis: [
+                {
+                  display: true,
+                  scaleLabel: {
+                    display: true
+                  }
+                }
+              ],
+              yAxis: [
+                {
+                  display: true,                    
+                  scaleLabel: {
+                    display: true
+                  }
+                }
+              ]
             }
-          })
-        }
+          }
+        })
+
+        this.ageChart = new Chart('age', {
+          type: 'line',
+          data: {
+            labels: this.lastName,
+            datasets: [
+              {
+                label: 'Age',
+                data: this.age,
+                borderColor: '#3cba9f',
+                fill: false
+              }
+            ]
+          },
+          options: {
+            legend: {
+              display: true
+            },
+            title: {
+              display: true,
+              text: 'Employee Age Chart'
+            },
+            scales: {
+              xAxis: [
+                {
+                  display: true,
+                  scaleLabel: {
+                    display: true
+                  }
+                }
+              ],
+              yAxis: [
+                {
+                  display: true,
+                  beginAtZero: true,
+                  scaleLabel: {
+                    display: true
+                  }
+                }
+              ]
+            }
+          }
+        })
+
       });
   }
 
