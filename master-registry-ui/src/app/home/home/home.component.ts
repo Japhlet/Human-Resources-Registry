@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.employeeCharts();    
+    this.employeeCharts();
   }
 
   employeeCharts() {
@@ -41,21 +41,70 @@ export class HomeComponent implements OnInit {
           this.salary.push(data.salary);
           this.age.push(data.age);
 
-          this.leaveDaysChart = new Chart('leaveDays', {
-            type: 'line',
+          if (this.totalLeaveDays != null || this.leaveDaysLeft != null || this.lastName != null) {
+
+            this.leaveDaysChart = new Chart('leaveDays', {
+              type: 'line',
+              data: {
+                labels: this.lastName,
+                datasets: [
+                  {
+                    label: 'Total Leave Days',
+                    data: this.totalLeaveDays,
+                    borderColor: '#3cba9f',
+                    fill: false
+                  },
+                  {
+                    label: 'Leave Days Left',
+                    data: this.leaveDaysLeft,
+                    borderColor: '#ffcc00',
+                    fill: false
+                  }
+                ]
+              },
+              options: {
+                legend: {
+                  display: true
+                },
+                title: {
+                  display: true,
+                  text: 'Employee Leave Days Chart'
+                },
+                scales: {
+                  xAxis: [
+                    {
+                      display: true,
+                      scaleLabel: {
+                        display: true
+                      }
+                    }
+                  ],
+                  yAxis: [
+                    {
+                      display: true,
+                      beginAtZero: true,
+                      scaleLabel: {
+                        display: true
+                      }
+                    }
+                  ]
+                }
+              }
+            })
+          }
+        }
+
+        if(this.salary != null || this.lastName != null) {
+
+          this.salaryChart = new Chart('salary', {
+            type: 'bar',
             data: {
               labels: this.lastName,
               datasets: [
                 {
-                  label: 'Total Leave Days',
-                  data: this.totalLeaveDays,
-                  borderColor: '#3cba9f',
-                  fill: false
-                },
-                {
-                  label: 'Leave Days Left',
-                  data: this.leaveDaysLeft,
-                  borderColor: '#ffcc00',
+                  label: 'Salary',
+                  data: this.salary,
+                  borderColor: '#524c4c',
                   fill: false
                 }
               ]
@@ -66,7 +115,53 @@ export class HomeComponent implements OnInit {
               },
               title: {
                 display: true,
-                text: 'Employee Leave Days Chart'
+                text: 'Employee Salary Chart'
+              },
+              scales: {
+                xAxis: [
+                  {
+                    display: true,
+                    scaleLabel: {
+                      display: true
+                    }
+                  }
+                ],
+                yAxis: [
+                  {
+                    display: true,
+                    scaleLabel: {
+                      display: true
+                    }
+                  }
+                ]
+              }
+            }
+          })
+
+        }
+
+        if(this.age != null || this.lastName != null) {
+
+          this.ageChart = new Chart('age', {
+            type: 'line',
+            data: {
+              labels: this.lastName,
+              datasets: [
+                {
+                  label: 'Age',
+                  data: this.age,
+                  borderColor: '#3cba9f',
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              legend: {
+                display: true
+              },
+              title: {
+                display: true,
+                text: 'Employee Age Chart'
               },
               scales: {
                 xAxis: [
@@ -91,92 +186,7 @@ export class HomeComponent implements OnInit {
           })
         }
 
-        this.salaryChart = new Chart('salary', {
-          type: 'bar',
-          data: {
-            labels: this.lastName,
-            datasets: [                
-              {
-                label: 'Salary',
-                data: this.salary,
-                borderColor: '#524c4c',
-                fill: false
-              }
-            ]
-          },
-          options: {
-            legend: {
-              display: true
-            },
-            title: {
-              display: true,
-              text: 'Employee Salary Chart'
-            },
-            scales: {
-              xAxis: [
-                {
-                  display: true,
-                  scaleLabel: {
-                    display: true
-                  }
-                }
-              ],
-              yAxis: [
-                {
-                  display: true,                    
-                  scaleLabel: {
-                    display: true
-                  }
-                }
-              ]
-            }
-          }
-        })
-
-        this.ageChart = new Chart('age', {
-          type: 'line',
-          data: {
-            labels: this.lastName,
-            datasets: [
-              {
-                label: 'Age',
-                data: this.age,
-                borderColor: '#3cba9f',
-                fill: false
-              }
-            ]
-          },
-          options: {
-            legend: {
-              display: true
-            },
-            title: {
-              display: true,
-              text: 'Employee Age Chart'
-            },
-            scales: {
-              xAxis: [
-                {
-                  display: true,
-                  scaleLabel: {
-                    display: true
-                  }
-                }
-              ],
-              yAxis: [
-                {
-                  display: true,
-                  beginAtZero: true,
-                  scaleLabel: {
-                    display: true
-                  }
-                }
-              ]
-            }
-          }
-        })
-
-      });
+        });
   }
 
 }
