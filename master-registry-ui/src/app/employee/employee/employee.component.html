@@ -10,6 +10,8 @@
                 <th>Email</th>
                 <th>Department</th>
                 <th>Country</th>
+                <th>Total Leave Days</th>
+                <th>Leave Days Left</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +22,8 @@
                 <td><span>{{ employee.email }}</span></td>
                 <td><span>{{ employee.department }}</span></td>
                 <td><span>{{ employee.country }}</span></td>
+                <td><span>{{ employee.totalLeaveDays }}</span></td>
+                <td><span>{{ employee.leaveDaysLeft }}</span></td>
                 <td>
                     <button class="btn btn-sm btn-info" (click)="openEmployeeDetailsModal(employeeDetailsModal, employee)"><i class="fa fa-search"></i>Details</button>
                     <button class="btn btn-sm btn-warning" (click)="openEditEmployeeDetailsModal(editEmployeeModal, employee)"><i class="fa fa-edit"></i>Edit</button>
@@ -38,7 +42,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #addEmployeeForm="ngForm" (ngSubmit)="onSubmit(addEmployeeForm)" novalidate>
+      <form #addEmployeeForm="ngForm" (ngSubmit)="onSubmit(addEmployeeForm)">
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <div class="input-group">
@@ -69,6 +73,20 @@
                 <input id="svcountry" name="country" class="form-control" ngModel>
             </div>
         </div>
+
+        <div class="form-group">
+          <label for="totalLeaveDays">Total Leave Days</label>
+          <div class="input-group">
+              <input id="svtottalleavedays" name="totalLeaveDays" class="form-control" ngModel>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="leaveDaysLeft">Leave Days Left</label>
+        <div class="input-group">
+            <input id="svleavedaysleft" name="leaveDaysLeft" class="form-control" ngModel>
+        </div>
+    </div>
 
         <div class="border text-center">
             <button data-dismiss="modal" class="btn btn-info">Save</button>

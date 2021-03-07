@@ -15,5 +15,12 @@
                 Employees           
             </a>            
         </div>        
+    </div>    
+    <div *ngIf="chart" style="width:25%;">
+        <canvas id="canvas" width="1px" height="1px">
+            {{ chart }}
+        </canvas>
     </div>
+    
 </div>
+

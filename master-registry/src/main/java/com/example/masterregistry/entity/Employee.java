@@ -23,4 +23,6 @@ public class Employee {
     private String email;
     private String department;
     private String country;
+    private Long totalLeaveDays;
+    private Long leaveDaysLeft;
 }

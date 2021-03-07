@@ -32,7 +32,9 @@ export class EmployeeComponent implements OnInit {
       firstName: [''],
       email: [''],
       department: [''],
-      country: ['']
+      country: [''],
+      totalLeaveDays: [''],
+      leaveDaysLeft: ['']
     } );
   }
   
@@ -98,7 +100,9 @@ export class EmployeeComponent implements OnInit {
       firstName: employee.firstName,
       email: employee.email,
       department: employee.department,
-      country: employee.country
+      country: employee.country,
+      totalLeaveDays: employee.totalLeaveDays,
+      leaveDaysLeft: employee.leaveDaysLeft
     });
   }
 

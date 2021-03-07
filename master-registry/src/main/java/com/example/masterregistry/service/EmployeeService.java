@@ -47,6 +47,8 @@ public class EmployeeService {
         employeeToUpdate.setEmail(employee.getEmail());
         employeeToUpdate.setDepartment(employee.getDepartment());
         employeeToUpdate.setCountry(employee.getCountry());
+        employeeToUpdate.setTotalLeaveDays(employee.getTotalLeaveDays());
+        employeeToUpdate.setLeaveDaysLeft(employee.getLeaveDaysLeft());
 
         this.employeeRepository.save(employeeToUpdate);
     }

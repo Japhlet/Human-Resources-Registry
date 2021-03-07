@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home/home.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from './service/employee.service';
-import { FormBuilder, FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserregistrationComponent } from './userregistration/userregistration/userregistration.component';
 import { AppuserslistComponent } from './userregistration/appuserslist/appuserslist.component';
 

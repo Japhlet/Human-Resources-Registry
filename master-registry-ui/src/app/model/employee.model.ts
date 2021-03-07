@@ -1,9 +1,11 @@
-export interface Employee {
+export class Employee {
 
-    id: number,
-    lastName: string,
-    firstName: string,
-    email: string,
-    department: string,
-    country: string
+    id: number;
+    lastName: string;
+    firstName: string;
+    email: string;
+    department: string;
+    country: string;
+    totalLeaveDays: number;
+    leaveDaysLeft: number;
 }
