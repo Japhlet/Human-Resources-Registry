@@ -1,8 +1,6 @@
 # Master-Registry
 Master-Registry is a simple web-based CRUD application using Spring Boot back-end and Angular front-end.
 
-Project to train Spring Boot programming with Angular doing the Front-end part.
-
 It's a REST API that you can perform user registration, login and CRUD operations.
 
 The Angular front-end calls the back-end Spring Boot APIs 
