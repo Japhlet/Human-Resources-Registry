@@ -14,10 +14,9 @@ import { UserregistrationService } from 'src/app/userregistration.service';
 export class UserregistrationComponent implements OnInit {
 
   appUsers: AppUser[];
-  closeResult: string;
-  loginSuccessMessage = '';
-  loginErrorMessage = '';
-  userCreatedSuccessfulMessage = '';
+  closeResult: string; 
+  loginErrorMessage = '';  
+  userNotCreatedSuccessfulMessage = '';
   appUser = new AppUser();
 
   constructor(
@@ -49,12 +48,15 @@ export class UserregistrationComponent implements OnInit {
 
   onSubmit(registerAppUserForm: NgForm) {    
     this.userRegistrationService.registerAppUser(registerAppUserForm.value).subscribe(
-      (result) => {
-        this.ngOnInit(); //Reload the table
-        this.userCreatedSuccessfulMessage = "User added successfully.";
-      }
-    );
-    this.modalService.dismissAll() //Dismiss the modal
+      data => {
+        this.ngOnInit(); //Reload the table        
+        this.modalService.dismissAll() //Dismiss the modal
+      },
+      error => {
+        console.log(error);
+        this.userNotCreatedSuccessfulMessage = "Email taken";
+    }
+    );    
   } 
   
   openLoginAppUserModal(loginAppUserModal) {

@@ -15,29 +15,43 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #registerAppUserForm="ngForm" (ngSubmit)="onSubmit(registerAppUserForm)" novalidate>
+      <form #registerAppUserForm="ngForm" (ngSubmit)="onSubmit(registerAppUserForm)">
+        <small class="text-danger">{{ userNotCreatedSuccessfulMessage }}</small> 
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <div class="input-group">
-                <input id="svlastName" name="lastName" class="form-control" ngModel required="true">
+                <input id="lastName" name="lastName" class="form-control" ngModel required #lastName="ngModel"
+                [class.is-invalid] = "lastName.invalid && lastName.touched">
+                <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">Last Name is required</small>
             </div>
         </div>
         <div class="form-group">
             <label for="firstName">First Name</label>
             <div class="input-group">
-                <input id="svfirstName" name="firstName" class="form-control" ngModel>
+                <input id="firstName" name="firstName" class="form-control" ngModel required #firstName="ngModel"
+                [class.is-invalid] = "firstName.invalid && firstName.touched">
+                <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">First Name is required</small>
             </div>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <div class="input-group">
-                <input type="email" id="svemail" name="email" class="form-control" ngModel>
+                <input type="email" id="email" name="email" class="form-control" ngModel required 
+                pattern='^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$' noncapitalize #svemail="ngModel" 
+                [class.is-invalid] = "svemail.invalid && svemail.touched">
+                
+                <div *ngIf="svemail.errors && svemail.invalid && svemail.touched">
+                  <small class="text-danger" *ngIf="svemail.errors.required">Email is required</small>
+                  <small class="text-danger" *ngIf="svemail.errors.pattern">Invalid Email</small>
+              </div>
             </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <div class="input-group">
-                <input type="password" id="svpassword" name="svpassword" class="form-control" ngModel required #svpassword>
+                <input type="password" id="password" name="password" class="form-control" ngModel required #svpassword="ngModel" 
+                [class.is-invalid] = "svpassword.invalid && svpassword.touched">
+                <small class="text-danger" [class.d-none]="svpassword.valid || svpassword.untouched">Password is required</small>
             </div>
         </div>
 
@@ -70,28 +84,28 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #loginAppUserForm="ngForm" (ngSubmit)="loginUser(loginAppUserForm)" novalidate> 
+      <form #loginAppUserForm="ngForm" (ngSubmit)="loginUser(loginAppUserForm)"> 
         <!-- {{ loginAppUserForm.form.valid }} -->
         <small class="text-danger">{{ loginErrorMessage }}</small>      
         <div class="form-group">
             <label for="email">Email</label>
             <div class="input-group">
-                <input type="email" id="lgemail" name="email" class="form-control" placeholder="Enter email" ngModel required 
-                pattern='^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$' noncapitalize #email="ngModel" 
-                [class.is-invalid] = "email.invalid && email.touched">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" ngModel required 
+                pattern='^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$' noncapitalize #lgemail="ngModel" 
+                [class.is-invalid] = "lgemail.invalid && lgemail.touched">
                 
-                <div *ngIf="email.errors && email.invalid && email.touched">
-                  <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
-                <small class="text-danger" *ngIf="email.errors.pattern">Invalid Email</small>
+                <div *ngIf="lgemail.errors && lgemail.invalid && lgemail.touched">
+                  <small class="text-danger" *ngIf="lgemail.errors.required">Email is required</small>
+                <small class="text-danger" *ngIf="lgemail.errors.pattern">Invalid Email</small>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <div class="input-group">
-                <input type="password" id="lgpassword" name="password" placeholder="Enter password" class="form-control" ngModel required #password="ngModel" 
-                [class.is-invalid] = "password.invalid && password.touched">
-                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+                <input type="password" id="password" name="password" placeholder="Enter password" class="form-control" ngModel required #lgpassword="ngModel" 
+                [class.is-invalid] = "lgpassword.invalid && lgpassword.touched">
+                <small class="text-danger" [class.d-none]="lgpassword.valid || lgpassword.untouched">Password is required</small>
             </div>
         </div>
 
