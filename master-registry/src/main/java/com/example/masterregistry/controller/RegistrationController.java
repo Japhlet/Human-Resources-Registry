@@ -35,4 +35,14 @@ public class RegistrationController {
     public AppUser getAppUserByEmail(@PathVariable(value = "email") String email) {
         return this.registrationService.getAppUserByEmail(email);
     }
+
+    @PutMapping(path = "users/update")
+    public void updateEmployee(@RequestBody AppUser appUser) {
+        this.registrationService.updateAppUser(appUser);
+    }
+
+    @DeleteMapping(path = "users/delete/{id}")
+    public void deleteEmployee(@PathVariable(value = "id") Long id) {
+        this.registrationService.deleteAppUser(id);
+    }
 }

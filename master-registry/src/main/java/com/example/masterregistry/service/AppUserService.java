@@ -1,6 +1,8 @@
 package com.example.masterregistry.service;
 
 import com.example.masterregistry.entity.AppUser;
+import com.example.masterregistry.exceptions.AppUserNotFoundException;
+import com.example.masterregistry.exceptions.EmployeeNotFoundException;
 import com.example.masterregistry.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +18,7 @@ public class AppUserService implements UserDetailsService {
     private final AppUserRepository appUserRepository;
     private final static String USER_NOT_FOUND_MSG = "User with email %s not found";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final EmailValidator emailValidator;
 
     @Override
     public UserDetails loadUserByUsername(String email)
@@ -44,5 +47,30 @@ public class AppUserService implements UserDetailsService {
 
     public int enableAppUser(String email) {
         return appUserRepository.enableAppUser(email);
+    }
+
+    public void updateAppUser(AppUser appUser) {
+        AppUser appUserToUpdate = appUserRepository.findById(appUser.getId())
+                .orElseThrow(() -> new AppUserNotFoundException("App User with id "+appUser.getId()+" not found"));
+
+
+        boolean isValidEmail = emailValidator.test(appUser.getEmail());
+
+        if(!isValidEmail) {
+            throw new IllegalStateException("Email not valid");
+        }
+
+        appUserToUpdate.setLastName(appUser.getLastName());
+        appUserToUpdate.setFirstName(appUser.getFirstName());
+        appUserToUpdate.setEmail(appUser.getEmail());
+        appUserToUpdate.setPassword(appUser.getPassword());
+
+        this.appUserRepository.save(appUserToUpdate);
+    }
+
+    public void deleteAppUser(Long id) {
+        AppUser appUserToDelete = this.appUserRepository.findById(id)
+                .orElseThrow(() -> new AppUserNotFoundException("App User with id "+id+" not found"));
+        this.appUserRepository.delete(appUserToDelete);
     }
 }

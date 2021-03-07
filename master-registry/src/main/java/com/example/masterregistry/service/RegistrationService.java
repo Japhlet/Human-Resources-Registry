@@ -2,7 +2,9 @@ package com.example.masterregistry.service;
 
 import com.example.masterregistry.entity.AppUser;
 import com.example.masterregistry.entity.AppUserRole;
+import com.example.masterregistry.entity.Employee;
 import com.example.masterregistry.entity.RegistrationRequest;
+import com.example.masterregistry.exceptions.EmployeeNotFoundException;
 import com.example.masterregistry.repository.AppUserRepository;
 import com.example.masterregistry.securityconfig.PasswordEncoder;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,7 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final AppUserRepository appUserRepository;
     private final static String USER_NOT_FOUND_MSG = "User with email %s not found";
+
     public void register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
 
@@ -62,5 +65,20 @@ public class RegistrationService {
         }
 
         return appUser;
+    }
+
+    public void updateAppUser(AppUser appUser) {
+
+        boolean isValidEmail = emailValidator.test(appUser.getEmail());
+
+        if(!isValidEmail) {
+            throw new IllegalStateException("Email not valid");
+        }
+
+        this.appUserService.updateAppUser(appUser);
+    }
+
+    public void deleteAppUser(Long id) {
+        this.appUserService.deleteAppUser(id);
     }
 }
