@@ -7,14 +7,13 @@ It's a REST API that you can perform user registration, login and CRUD operation
 
 The Angular front-end calls the back-end Spring Boot APIs 
 
-Application to demonstrate various parts of a service oriented RESTfull application.
+Application to demonstrate various parts of a service oriented RESTful application.
 Backend (REST-API)	SpringBoot (Java)
 Frontend	Angular 8+
 Database	PostgreSQL
 Persistence	JPA (Using Spring Data)
 Client Build Tools	angular-cli, Webpack, npm
 Server Build Tools	Maven(Java)
-Folder Structure
 
 Prerequisites
 Ensure you have this installed before proceeding further
@@ -32,18 +31,15 @@ This is an RESTfull implementation of a simple CRUD app. The goal of the project
     How to consume an RESTfull service and make an HTML5 based Single Page App using Angular
 
 Install Frontend
-
 # Navigate to PROJECT_FOLDER (should contain package.json )
 npm install
+Or Open it in Visual Studio Code IDE, and run => ng serve, to start the development server
 
 Install Backend (SpringBoot Java)
+# Maven Build : Navigate to the root folder where pom.xml is present and open with IntelliJ IDEA prefereble
+and run it
 
-# Maven Build : Navigate to the root folder where pom.xml is present 
-mvn clean install
+The you can access the Back-end API and Web UI using the below URLs
 
-Start the API and Webui server
-
-Accessing Application
-Component	URL
 Frontend	http://localhost:4200
-Backend (API Ref)	http://localhost:8080/
+Backend (API Ref)	http://localhost:8080/ (Default User Registration and Login)
