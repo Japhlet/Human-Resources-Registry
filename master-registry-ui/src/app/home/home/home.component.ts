@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
           this.lastName.push(data.lastName);
 
           this.chart = new Chart('canvas', {
-              type: 'line',
+              type: 'line',              
               data: {
                 labels: this.lastName,
                 datasets: [
