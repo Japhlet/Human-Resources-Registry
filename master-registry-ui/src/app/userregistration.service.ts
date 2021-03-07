@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -27,17 +27,15 @@ export class UserregistrationService {
     return this.http.get<AppUser[]>(`${this.apiServerUrl}/users/all`);
   }
 
-  public loginUsers(email: string, password: String) {
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(
-        email +":"+password
-      )
-    })
-
-    return this.http.get(`${this.apiServerUrl}`, {headers, responseType: 'text' as 'json'});
-  }
-
   public loginUser(appUser: AppUser): Observable<any> {
     return this.http.post<any>(`${this.apiServerUrl}`, appUser);
+  }
+
+  public updateAppUser(appUser : AppUser): Observable<AppUser> {
+    return this.http.put<AppUser>(`${this.apiServerUrl}/users/update`, appUser);
+  }
+
+  public deleteAppUser(appUserId : number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/users/delete/${appUserId}`);
   }
 }

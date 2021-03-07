@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AppuserslistService } from 'src/app/appuserslist.service';
 import { AppUser } from 'src/app/model/userregistration.model';
 import { UserregistrationService } from 'src/app/userregistration.service';
 
@@ -21,7 +20,6 @@ export class AppuserslistComponent implements OnInit {
   appUserToDeleteId: number;
 
   constructor(
-    private appUserslistService: AppuserslistService,
     private userRegistrationService: UserregistrationService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder
@@ -34,12 +32,13 @@ export class AppuserslistComponent implements OnInit {
       id: [''],
       lastName: [''],
       firstName: [''],
-      email: ['']
+      email: [''],
+      password: ['']
     });
   }
 
   public getAllAppUsers(): void {
-    this.appUserslistService.getAllAppUsers().subscribe(
+    this.userRegistrationService.getAllAppUsers().subscribe(
       (response: AppUser[]) => {
         this.appUsers = response;
       },
@@ -101,17 +100,18 @@ export class AppuserslistComponent implements OnInit {
       id: appUser.id,
       lastName: appUser.lastName,
       firstName: appUser.firstName,
-      email: appUser.email
+      email: appUser.email,
+      password: appUser.password
     });
   }
 
-  //onSave() {
-  //this.userRegistrationService.updateAppUser(this.editForm.value)
-  //.subscribe((results) => {
-  // this.ngOnInit();
-  // this.modalService.dismissAll();
-  // });
-  // }
+  onSave() {
+    this.userRegistrationService.updateAppUser(this.editForm.value)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
 
   openDeleteAppUserModal(deleteAppUserModal, appUser: AppUser) {
     this.appUserToDeleteId = appUser.id;
@@ -121,13 +121,13 @@ export class AppuserslistComponent implements OnInit {
     });
   }
 
-  //onDelete() {
-    //this.userRegistrationService.deleteAppUser(this.appUserToDeleteId)
-     // .subscribe((results) => {
-      //  this.ngOnInit();
-      //  this.modalService.dismissAll();
-     // });
-  //}
+  onDelete() {
+    this.userRegistrationService.deleteAppUser(this.appUserToDeleteId)
+      .subscribe((results) => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      });
+  }
 
 }
 
